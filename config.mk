@@ -2,16 +2,14 @@
 # 
 # Travis Banken
 
-# VPATH += gcc-arm-none-eabi-8-2019-q3-update/bin/
-
 CC_PATH = gcc-arm-none-eabi-8-2019-q3-update/bin/arm-none-eabi-gcc
-#CC = arm-none-eabi-gcc
 AR = ar
 LD_PATH = $(CC_PATH)
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS += -std=gnu99
+CFLAGS += -Wall -Wextra -Werror
 CFLAGS += -g
-DFLAGS = -DDEBUG
+DFLAGS += -DDEBUG
 # CFLAGS += -O2
 
 

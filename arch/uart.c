@@ -61,14 +61,6 @@ void uart_putc(char c)
     mmio_write(UART0_DR, (uint32_t) c);
 }
 
-// NOTE temp until stdio is made
-void uart_puts(const char *str)
-{
-    for (int i = 0; str[i] != '\0'; i++) {
-        uart_putc(str[i]);
-    }
-}
-
 static inline uint32_t mmio_read(uint32_t reg)
 {
     return *(volatile uint32_t *)reg;

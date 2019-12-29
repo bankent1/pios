@@ -10,20 +10,19 @@ OBJDIR = obj
 CSRC = $(wildcard *.c)
 SSRC = $(wildcard *.s)
 COBJS = ${CSRC:.c=.o}
-COBJS := $(OBJDIR)/$(COBJS)
+COBJS := $(patsubst %, $(OBJDIR)/%, $(COBJS))
 SOBJS = ${SSRC:.s=.o}
-SOBJS := $(OBJDIR)/$(SOBJS)
+SOBJS := $(patsubst %, $(OBJDIR)/%, $(SOBJS))
 HDRS = $(wildcard include/*.h)
 OBJS = $(COBJS) $(SOBJS)
 
 .PHONY: build
 build: $(OBJS)
-	@echo "finished building $(OBJS)"
 
-$(COBJS): $(CSRC) $(HDRS)
+$(OBJDIR)/%.o: %.c $(HDRS)
 	$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
 
-$(SOBJS): $(SSRC)
+$(OBJDIR)/%.o: %.s $(HDRS)
 	$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
 
 .PHONY: clean

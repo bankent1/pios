@@ -7,8 +7,8 @@
  * https://www.raspberrypi.org/app/uploads/2012/02/BCM2835-ARM-Peripherals.pdf
  */
 
-#ifndef UART_H
-#define UART_H
+#ifndef __UART_H
+#define __UART_H
 
 enum Peripherals {
 #ifdef MODEL_1
@@ -51,6 +51,5 @@ enum Peripherals {
 void uart_init();
 char uart_getc();
 void uart_putc(char c);
-void uart_puts(const char *str);
 
 #endif
