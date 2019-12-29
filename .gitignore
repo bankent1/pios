@@ -1,0 +1,6 @@
+**/*.o
+**/*.a
+**/*.img
+gcc-arm-none*
+lab
+manuals
