@@ -29,6 +29,12 @@ else
 	DFLAGS += -DMODEL_2
 endif
 
+VIRTUALIZED = 1
+# check if virtual
+ifeq ($(VIRTUALIZED), 1)
+	DFLAGS += -DVIRTUALIZED
+endif
+
 # TODO: option for 64 support
 ARCH = 32AArch
 DFLAGS += -DAARCH_32

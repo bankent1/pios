@@ -5,13 +5,13 @@
  */
 
 #include <stddef.h>
-#include <stdint.h>
 
+#include <kint.h>
 #include <uart.h>
 
-static inline uint32_t mmio_read(uint32_t reg);
-static inline void mmio_write(uint32_t reg, uint32_t data);
-static inline void delay(uint32_t amount);
+static inline u32 mmio_read(u32 reg);
+static inline void mmio_write(u32 reg, u32 data);
+static inline void delay(u32 amount);
 
 
 // set up the registers of uart for use
@@ -58,20 +58,20 @@ void uart_putc(char c)
 {
     while ((mmio_read(UART0_FR) >> 5) & 0x1); // busy wait until uart tx empty
 
-    mmio_write(UART0_DR, (uint32_t) c);
+    mmio_write(UART0_DR, (u32) c);
 }
 
-static inline uint32_t mmio_read(uint32_t reg)
+static inline u32 mmio_read(u32 reg)
 {
-    return *(volatile uint32_t *)reg;
+    return *(volatile u32 *)reg;
 }
 
-static inline void mmio_write(uint32_t reg, uint32_t data)
+static inline void mmio_write(u32 reg, u32 data)
 {
-    *(volatile uint32_t *)reg = data;
+    *(volatile u32 *)reg = data;
 }
 
-static inline void delay(uint32_t amount)
+static inline void delay(u32 amount)
 {
     // not too sure about this :/
     asm volatile(
