@@ -1,9 +1,5 @@
-#include <stddef.h>
-#include <stdarg.h>
-#include <stdarg.h>
-
-#include <uart.h>
 #include <stdio.h>
+#include <uart.h>
 #include <stdlib.h>
 
 #define PF_BUF_SIZE 32

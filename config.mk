@@ -47,3 +47,5 @@ CFLAGS += -mcpu=$(CPU) -fpic -ffreestanding
 CFLAGS += $(DFLAGS)
 
 SUBDIRS = arch kernel common
+
+HDRS = $(wildcard */include/*.h)

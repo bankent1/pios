@@ -2,6 +2,7 @@
 #define __STDIO_H
 
 #include <stdarg.h>
+#include <stddef.h>
 
 char getc();
 void putc(char c);

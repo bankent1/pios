@@ -12,6 +12,8 @@
 #include <kint.h>
 #include <uart.h>
 #include <stdio.h>
+#include <mm.h>
+#include <interrupts.h>
 
 #ifdef VIRTUALIZED
 #define QEMU_MEM_SIZE_MB 256
@@ -59,12 +61,23 @@ void kernel_main(u32 r0, u32 r1, u32 atags)
 
 	// init everything
 	uart_init();
+	mem_init(); // TODO: check rc
 
 	kprintf("Hello, kernel world!\n");
-	kprintf("MEM Size: %d B or %d MB", memtag->size, memtag->size / (1028*1028));
-	// kprintf("MEM starts at addr 0x%x", memtag->size);
+	kprintf("MEM Size: %d B or %d MB\n", memtag->size, memtag->size / (1028*1028));
+
+	disable_int();
+	enable_int();
+
+	if (int_enabled())
+		kprintf("Interrupts enabled!\n");
+	else
+		kprintf("Interrupts disabled!\n");
 
 	while (1) {
 		putc(getc());
 	}
+
+	// shutdown everything
+	mem_shutdown();
 }
