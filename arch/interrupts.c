@@ -24,6 +24,7 @@ inline int int_enabled()
 
 inline void disable_int()
 {
+	// CPS Interrupt Enable IRQ
 	asm volatile (
 		"cpsie i"
 	);
@@ -36,8 +37,10 @@ inline int enable_int()
 		prev_on = 1;
 	}
 
+	// CPS Interrupt Disable IRQ
 	asm volatile (
 		"cpsid i"
 	);
 	return prev_on;
 }
+

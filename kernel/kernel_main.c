@@ -24,6 +24,8 @@
 #define ATAGS_CMDLINE 0x54410009
 #define ATAGS_NONE 0x0
 
+#define PAGE_SIZE (4 * 1080) // 4KB
+
 struct atag_mem {
 	u32 size;
 	u32 start; // physical start addr
@@ -61,11 +63,12 @@ void kernel_main(u32 r0, u32 r1, u32 atags)
 
 	// init everything
 	uart_init();
-	mem_init(); // TODO: check rc
+	mem_init(memtag->size, PAGE_SIZE); // TODO: check rc
 
 	kprintf("Hello, kernel world!\n");
 	kprintf("MEM Size: %d B or %d MB\n", memtag->size, memtag->size / (1028*1028));
 
+	// TODO not this
 	disable_int();
 	enable_int();
 
