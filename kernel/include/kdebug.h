@@ -3,7 +3,7 @@
 
 #include <stdio.h>
 
-void kdebug_printf(char *fmt, ...)
+static void kdebug_printf(char *fmt, ...)
 {
 #ifdef DEBUG
 	va_list args;

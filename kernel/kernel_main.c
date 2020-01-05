@@ -14,6 +14,7 @@
 #include <stdio.h>
 #include <mm.h>
 #include <interrupts.h>
+#include <kdebug.h>
 
 #ifdef VIRTUALIZED
 #define QEMU_MEM_SIZE_MB 256
@@ -25,6 +26,15 @@
 #define ATAGS_NONE 0x0
 
 #define PAGE_SIZE (4 * 1080) // 4KB
+
+static u32 MEM_SIZE;
+
+
+// prototypes
+static void init_all();
+static void shutdown_all();
+static void panic();
+
 
 struct atag_mem {
 	u32 size;
@@ -61,9 +71,10 @@ void kernel_main(u32 r0, u32 r1, u32 atags)
 	memtag->size = QEMU_MEM_SIZE_MB * 1028 * 1028;
 #endif
 
+	MEM_SIZE = memtag->size;
 	// init everything
 	uart_init();
-	mem_init(memtag->size, PAGE_SIZE); // TODO: check rc
+	init_all();
 
 	kprintf("Hello, kernel world!\n");
 	kprintf("MEM Size: %d B or %d MB\n", memtag->size, memtag->size / (1028*1028));
@@ -82,5 +93,27 @@ void kernel_main(u32 r0, u32 r1, u32 atags)
 	}
 
 	// shutdown everything
-	mem_shutdown();
+	shutdown_all();
+}
+
+static void init_all()
+{
+	if (mem_init(MEM_SIZE, PAGE_SIZE) != MEM_OK) {
+		KLOG("ERROR -- Mem init failed!\n");
+		panic();
+	}
+}
+
+static void shutdown_all()
+{
+	if (mem_shutdown() != MEM_OK) {
+		KLOG("ERROR -- Mem Shutdown failed\n");
+		panic();
+	}
+}
+
+static void panic()
+{
+	KLOG("Kernel PANIC!!\n");
+	// TODO any important stuff
 }
