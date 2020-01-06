@@ -88,6 +88,8 @@ void kernel_main(u32 r0, u32 r1, u32 atags)
 	else
 		kprintf("Interrupts disabled!\n");
 
+	kdebug_printmode();
+
 	while (1) {
 		putc(getc());
 	}

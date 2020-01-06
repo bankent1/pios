@@ -9,6 +9,7 @@
 #include <kint.h>
 #include <mm.h>
 #include <kdebug.h>
+#include <ktools.h>
 
 typedef struct Frame {
 	PTE page;
@@ -25,7 +26,8 @@ extern u8 __end;
 
 int mem_init(u32 memsize, u32 pagesize)
 {
-	// TODO: checkmode
+	kcheckmode();
+	
 	KLOG("Initializing memory\n");
 	if (mem_initialized) {
 		KLOG("ERROR -- Already initialized!\n")
@@ -49,7 +51,8 @@ int mem_init(u32 memsize, u32 pagesize)
 
 int mem_shutdown()
 {
-	// TODO: checkmode
+	kcheckmode();
+
 	KLOG("Shutdown Called!\n");
 	if (mem_initialized == 0) {
 		return MEM_NOT_INIT;

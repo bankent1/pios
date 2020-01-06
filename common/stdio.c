@@ -52,6 +52,13 @@ int vkprintf(const char *format, va_list args)
                 puts(dtoa);
                 // nprinted += strlen(dtoa);
                 break;
+            case 'x':
+                memset((void *) buf, '\0', PF_BUF_SIZE);
+                int x = va_arg(args, int);
+                char *xtoa = itoa(x, buf, 16);
+                puts(xtoa);
+                // nprinted += strlen(xtoa);
+                break;
             case 's':
                 str = va_arg(args, char *);
                 puts(str);

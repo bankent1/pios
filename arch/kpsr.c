@@ -4,9 +4,20 @@
  * Author: Travis Banken
  *
  * Functions related to PSR
+ * ARM manual A2.5
  */
 
-inline int kcheckmode()
+#include <kint.h>
+
+u8 psr_getmode()
 {
-	return 1;
+	u32 psr;
+	asm volatile (
+		"mrs %[psr], CPSR"
+		: [psr] "=r" (psr)
+		::
+	);
+
+	// want bits 0-4
+	return psr & 0b11111;
 }

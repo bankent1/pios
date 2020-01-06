@@ -2,6 +2,7 @@
 #define __KDEBUG_H
 
 #include <stdio.h>
+#include <kpsr.h>
 
 static void kdebug_printf(char *fmt, ...)
 {
@@ -16,5 +17,7 @@ static void kdebug_printf(char *fmt, ...)
 
 #define KLOG(fmt, ...) kdebug_printf("%s: ", __FUNCTION__);\
 	kdebug_printf(fmt, ##__VA_ARGS__);
+
+void kdebug_printmode();
 
 #endif
