@@ -12,6 +12,7 @@ static inline void kcheckmode()
 {
 	u8 mode = psr_getmode();
 	if (mode == PSR_USER_MODE) {
+		// TODO switch to supervisor mode
 		proc_kill();
 	}
 }
