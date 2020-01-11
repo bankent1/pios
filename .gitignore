@@ -1,6 +1,7 @@
 **/*.o
 **/*.a
 **/*.img
+**/*.elf
 gcc-arm-none*
 lab
 manuals

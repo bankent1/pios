@@ -76,6 +76,14 @@ void kernel_main(u32 r0, u32 r1, u32 atags)
 	uart_init();
 	init_all();
 
+    // kprintf("*** Testing memcpy ***\n");
+    // int arr1[] = {0, 1, 2, 3, 4};
+    // int arr2[5];
+    // kprintf("&arr1 = %x\n", arr1);
+    // kprintf("&arr2 = %x\n", arr2);
+    // memcpy(arr2, arr1, 5);
+
+
 	kprintf("Hello, kernel world!\n");
 	kprintf("MEM Size: %d B or %d MB\n", memtag->size, memtag->size / (1028*1028));
 

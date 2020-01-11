@@ -6,6 +6,8 @@ CC_PATH = gcc-arm-none-eabi-8-2019-q3-update/bin/arm-none-eabi-gcc
 AR = ar
 LD_PATH = $(CC_PATH)
 
+OBJCOPY = gcc-arm-none-eabi-8-2019-q3-update/bin/arm-none-eabi-objcopy
+
 CFLAGS += -std=gnu99
 CFLAGS += -Wall -Wextra -Werror
 CFLAGS += -g

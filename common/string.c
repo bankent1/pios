@@ -1,4 +1,25 @@
 #include <stddef.h>
+#include <stdio.h>
+
+
+void* memcpy(void *dest, void *src, size_t n)
+{
+    char *dp = (char *)dest;
+    char *sp = (char *)src;
+    for (size_t i = 0; i < n; i++) {
+        dp[i] = sp[i];
+    }
+    return dest;
+}
+
+void* memset(void *s, int c, size_t n)
+{
+    unsigned char *sp = (unsigned char *)s;
+    for (size_t i = 0; i < n; i++) {
+        sp[i] = (unsigned char) c;
+    }
+    return s;
+}
 
 char* strcpy(char *dest, char *src)
 {
@@ -34,7 +55,13 @@ size_t strlen(const char *str)
 
 int strcmp(char *str1, char *str2)
 {
-    (void) str1;
-    (void) str2;
-    return -1;
+    int i;
+    for (i = 0; str1[i] != '\0' && str2[i] != '\0'; i++) {
+        if (str1[i] != str2[i])
+            return str1[i] - str2[i];
+    }
+    if (str1[i] != str2[i]) {
+        return str1[i] - str2[i];
+    }
+    return 0;
 }

@@ -1,23 +1,5 @@
 #include <stddef.h>
 
-void* memcpy(void *dest, const void *src, size_t n)
-{
-    unsigned char *dp = (unsigned char *)dest;
-    unsigned char *sp = (unsigned char *)src;
-    for (size_t i = 0; i < n; i++) {
-        dp[i] = sp[i];
-    }
-    return dest;
-}
-
-void* memset(void *s, int c, size_t n)
-{
-    unsigned char *sp = (unsigned char *)s;
-    for (size_t i = 0; i < n; i++) {
-        sp[i] = (unsigned char) c;
-    }
-    return s;
-}
 
 char* itoa(int value, char *str, int base)
 {

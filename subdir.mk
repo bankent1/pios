@@ -13,7 +13,7 @@ COBJS = ${CSRC:.c=.o}
 COBJS := $(patsubst %, $(OBJDIR)/%, $(COBJS))
 SOBJS = ${SSRC:.s=.o}
 SOBJS := $(patsubst %, $(OBJDIR)/%, $(SOBJS))
-# HDRS = $(wildcard include/*.h)
+HDRS = $(wildcard include/*.h)
 OBJS = $(COBJS) $(SOBJS)
 
 .PHONY: build
