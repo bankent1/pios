@@ -41,34 +41,41 @@ int interrupt_shutdown()
 void irq_handler()
 {
 	KLOG("IRQ HANDLER\n");
+	while (1);
 }
 
 void __attribute__ ((interrupt ("SWI"))) reset_handler()
 {
 	KLOG("RESET HANDLER\n");
+	while (1);
 }
 
 void __attribute__ ((interrupt ("ABORT"))) prefetch_abort_handler()
 {
 	KLOG("PREFETCH ABORT HANDLER\n");
+	while (1);
 }
 
 void __attribute__ ((interrupt ("ABORT"))) data_abort_handler()
 {
 	KLOG("DATA ABORT HANDLER\n");
+	while (1);
 }
 
 void __attribute__ ((interrupt ("UNDEF"))) undefined_instruction_handler()
 {
 	KLOG("UNDEFINED INSTRUCTION HANDLER\n");
+	while (1);
 }
 
 void __attribute__ ((interrupt ("SWI"))) software_interrupt_handler()
 {
 	KLOG("SOFTWARE INTERRUPT HANDLER\n");
+	while (1);
 }
 
 void __attribute__ ((interrupt ("FIQ"))) fast_irq_handler()
 {
 	KLOG("FAST IRQ HANDLER\n");
+	while (1);
 }
