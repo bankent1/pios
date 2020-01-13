@@ -20,6 +20,11 @@ If you are interested in making your own arm-based OS, these sites really helped
 - gnu make
 - Raspberry PI (preferably model 2, but 3 should work)
 
+## Setting up the Project
+- After downloading the gcc cross compiler, move the directory (named `gcc-arm-none-eabi-X-XXXX-XX-update`) to the root of the project.
+- Update the `GCC_VERSION` var in the `versions.mk` file with the version you downloaded. It should be in the form `X-XXXX-XX`.
+- Make sure that your qemu versions supports `qemu-system-arm` and `raspi2` machine as this is what is used as virtualized hardware
+
 ## Build
 ```make build```  
 
