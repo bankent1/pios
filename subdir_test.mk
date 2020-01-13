@@ -1,3 +1,4 @@
+include ../../versions.mk
 include ../../config.mk
 
 CC = ../../$(CC_PATH)

@@ -2,11 +2,14 @@
 # 
 # Travis Banken
 
-CC_PATH = gcc-arm-none-eabi-8-2019-q3-update/bin/arm-none-eabi-gcc
+ARM_GCC_DIR = gcc-arm-none-eabi-$(GCC_VERSION)-update
+
+# CC_PATH = gcc-arm-none-eabi-8-2019-q3-update/bin/arm-none-eabi-gcc
+CC_PATH = $(ARM_GCC_DIR)/bin/arm-none-eabi-gcc
 AR = ar
 LD_PATH = $(CC_PATH)
 
-OBJCOPY = gcc-arm-none-eabi-8-2019-q3-update/bin/arm-none-eabi-objcopy
+OBJCOPY = $(ARM_GCC_DIR)/bin/arm-none-eabi-objcopy
 
 CFLAGS += -std=gnu99
 CFLAGS += -Wall -Wextra -Werror
@@ -31,8 +34,8 @@ else
 	DFLAGS += -DMODEL_2
 endif
 
-VIRTUALIZED = 1
-# check if virtual
+# check if virtual, default is true
+VIRTUALIZED ?= 1
 ifeq ($(VIRTUALIZED), 1)
 	DFLAGS += -DVIRTUALIZED
 endif
