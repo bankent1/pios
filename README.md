@@ -1,4 +1,4 @@
-# pios
+# Pios
 Toy OS for raspberry pi to work more with ARM architecture. Not sure if this project will ever finish, it is just a hobby project. Feel free to poke around the code and try and get it to run on your hardware.  
 
 ## Helpful Resources
@@ -14,7 +14,7 @@ If you are interested in making your own arm-based OS, these sites really helped
 
 
 ## Requirements
-- arm gcc [cross compiler](https://developer.arm.com/tools-and-software/open-source-software/developer-tools/gnu-toolchain/gnu-rm/downloads) (make sure to update versions.mk with your version of gcc)
+- [arm gcc cross compiler](https://developer.arm.com/tools-and-software/open-source-software/developer-tools/gnu-toolchain/gnu-rm/downloads) (make sure to update versions.mk with your version of gcc)
 - [qemu](https://www.qemu.org/)
 - linux (not tested on mac)
 - gnu make
