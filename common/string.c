@@ -65,3 +65,11 @@ int strcmp(char *str1, char *str2)
     }
     return 0;
 }
+
+void bzero(void *s, size_t n)
+{
+    char *p = (char *)s;
+    for (size_t i = 0; i < n; i++) {
+        p[i] = 0;
+    }
+}

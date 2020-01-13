@@ -15,6 +15,7 @@
 #include <mm.h>
 #include <interrupt.h>
 #include <kdebug.h>
+#include <proc.h>
 
 #ifdef VIRTUALIZED
 #define QEMU_MEM_SIZE_MB 256
@@ -100,16 +101,46 @@ void kernel_main(u32 r0, u32 r1, u32 atags)
 
 static void init_all()
 {
-	if (mem_init(MEM_SIZE, PAGE_SIZE) != MEM_OK) {
-		KLOG("ERROR -- Mem init failed!\n");
+	int rc = 0;
+
+	rc = interrupt_init();
+	if (rc != INT_OK) {
+		KLOG("ERROR -- Interrupt init FAILED: rc %d\n", rc);
+		panic();
+	}
+
+	rc = mem_init(MEM_SIZE, PAGE_SIZE);
+	if (rc != MEM_OK) {
+		KLOG("ERROR -- Mem init FAILED: rc %d\n", rc);
+		panic();
+	}
+
+	rc = proc_init();
+	if (rc != PROC_OK) {
+		KLOG("ERROR -- Proc init FAILED: rc %d\n", rc);
 		panic();
 	}
 }
 
 static void shutdown_all()
 {
-	if (mem_shutdown() != MEM_OK) {
-		KLOG("ERROR -- Mem Shutdown failed\n");
+	int rc;
+
+	rc = mem_shutdown();
+	if (rc != MEM_OK) {
+		KLOG("ERROR -- Mem Shutdown failed: rc %d\n", rc);
+		panic();
+	}
+
+	rc = proc_shutdown();
+	if (rc != PROC_OK) {
+		KLOG("ERROR -- Proc shutdown FAILED: rc %d\n", rc);
+		panic();
+	}
+
+	rc = interrupt_shutdown();
+	if (rc != INT_OK) {
+		KLOG("ERROR -- Interrupt Shutdown failed: rc %d\n", rc);
 		panic();
 	}
 }

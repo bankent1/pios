@@ -7,5 +7,6 @@ char* strcpy(char *dest, char *src);
 char* strncpy(char *dest, char *src, size_t n);
 size_t strlen(const char *str);
 int strcmp(char *str1, char *str2);
+void bzero(void *s, size_t n);
 
 #endif
