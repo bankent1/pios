@@ -44,7 +44,7 @@ endif
 ARCH = 32AArch
 DFLAGS += -DAARCH_32
 
-LDFLAGS = -mcpu=$(CPU) -ffreestanding -nostdlib
+LDFLAGS = -mcpu=$(CPU) -ffreestanding -nostdlib -fpic
 # LDFLAGS += -O2
 
 CFLAGS += -mcpu=$(CPU) -fpic -ffreestanding

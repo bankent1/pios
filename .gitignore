@@ -2,6 +2,7 @@
 **/*.a
 **/*.img
 **/*.elf
+coredump*
 gcc-arm-none*
 lab
 manuals

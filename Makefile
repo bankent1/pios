@@ -45,4 +45,4 @@ clean:
 	+$(MAKE) -C kernel -f kernel.mk clean
 	+$(MAKE) -C common -f common.mk clean
 	+$(MAKE) -C $(TESTDIR) clean
-	rm -f $(TARG_ELF) $(TARG_IMG)
+	rm -f $(TARG_ELF) $(TARG_IMG) coredump*

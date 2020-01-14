@@ -26,7 +26,7 @@
 #define ATAGS_CMDLINE 0x54410009
 #define ATAGS_NONE 0x0
 
-#define PAGE_SIZE (4 * 1080) // 4KB
+#define PAGE_SIZE (4 * 1024) // 4KB
 
 static u32 MEM_SIZE;
 
@@ -35,7 +35,6 @@ static u32 MEM_SIZE;
 static void init_all();
 static void shutdown_all();
 static void panic();
-
 
 struct atag_mem {
 	u32 size;
@@ -48,6 +47,7 @@ void kernel_main(u32 r0, u32 r1, u32 atags)
 	(void) r0;
 	(void) r1;
 
+	// TODO this is borked :/
 	// grab atags info
 	u32 *atag = (u32 *) atags;
 	struct atag_mem *memtag = NULL;
@@ -69,7 +69,7 @@ void kernel_main(u32 r0, u32 r1, u32 atags)
 
 	// qmeu does not provide atag info
 #ifdef VIRTUALIZED
-	memtag->size = QEMU_MEM_SIZE_MB * 1028 * 1028;
+	memtag->size = QEMU_MEM_SIZE_MB * 1024 * 1024;
 #endif
 
 	MEM_SIZE = memtag->size;
@@ -78,7 +78,8 @@ void kernel_main(u32 r0, u32 r1, u32 atags)
 	init_all();
 
 	kprintf("Hello, kernel world!\n");
-	kprintf("MEM Size: %d B or %d MB\n", memtag->size, memtag->size / (1028*1028));
+	// kprintf("MEM Size: %d B or %d MB\n", memtag->size, memtag->size / (1024*1024));
+	kprintf("MEM Size: %d B or %d MB\n", MEM_SIZE, MEM_SIZE / (1024*1024));
 
 	// TODO not this
 	disable_int();
