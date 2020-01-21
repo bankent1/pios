@@ -19,12 +19,13 @@ enum TIMER_PERIPHS {
     TIMER_CMP3     = (TIMER_BASE + 0x18),
 };
 
-int systimer_init()
+int timer_init()
 {
+    // TODO register handler and clearer
     return 0;
 }
 
-int systimer_shutdown()
+int timer_shutdown()
 {
     return 0;
 }

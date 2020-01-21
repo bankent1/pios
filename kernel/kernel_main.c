@@ -46,33 +46,36 @@ void kernel_main(u32 r0, u32 r1, u32 atags)
 	// deal with these later
 	(void) r0;
 	(void) r1;
+	(void) atags;
 
 	// TODO this is borked :/
 	// grab atags info
-	u32 *atag = (u32 *) atags;
-	struct atag_mem *memtag = NULL;
-	while (*atag != ATAGS_NONE) {
-		switch (*atag) {
-		case ATAGS_CORE:
-			// TODO
-			break;
-		case ATAGS_MEM:
-			memtag = (struct atag_mem *)ATAGS_MEM;
-			break;
-		case ATAGS_CMDLINE:
-			// TODO
-			break;
-		}
-		// incr by size of atag
-		atag += *(atag + 1);
-	}
+	// u32 *atag = (u32 *) atags;
+	// struct atag_mem *memtag = NULL;
+	// while (*atag != ATAGS_NONE) {
+	// 	switch (*atag) {
+	// 	case ATAGS_CORE:
+	// 		// TODO
+	// 		break;
+	// 	case ATAGS_MEM:
+	// 		memtag = (struct atag_mem *)ATAGS_MEM;
+	// 		break;
+	// 	case ATAGS_CMDLINE:
+	// 		// TODO
+	// 		break;
+	// 	}
+	// 	// incr by size of atag
+	// 	atag += *(atag + 1);
+	// }
 
 	// qmeu does not provide atag info
 #ifdef VIRTUALIZED
-	memtag->size = QEMU_MEM_SIZE_MB * 1024 * 1024;
+	// TODO
+	// memtag->size = QEMU_MEM_SIZE_MB * 1024 * 1024;
+	MEM_SIZE = QEMU_MEM_SIZE_MB * 1024 * 1024;
 #endif
 
-	MEM_SIZE = memtag->size;
+	// MEM_SIZE = memtag->size;
 	// init everything
 	uart_init();
 	init_all();
