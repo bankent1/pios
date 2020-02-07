@@ -16,6 +16,7 @@
 #include <interrupt.h>
 #include <kdebug.h>
 #include <proc.h>
+#include <timer.h>
 
 #ifdef VIRTUALIZED
 #define QEMU_MEM_SIZE_MB 256
@@ -110,6 +111,12 @@ static void init_all()
 	rc = interrupt_init();
 	if (rc != INT_OK) {
 		KLOG("ERROR -- Interrupt init FAILED: rc %d\n", rc);
+		panic();
+	}
+
+	rc = timer_init();
+	if (rc != INT_OK) {
+		KLOG("ERROR -- Timer init FAILED: rc %d\n", rc);
 		panic();
 	}
 

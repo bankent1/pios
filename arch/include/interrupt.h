@@ -50,6 +50,7 @@ static inline int enable_int()
 int interrupt_init();
 int interrupt_shutdown();
 int register_irq_handler(enum IRQ_NUM irq_num, void (*handler)(void), void (*clearer)(void));
+int deregister_irq_handler(enum IRQ_NUM irq_num);
 void irq_handler();
 void __attribute__ ((interrupt ("SWI"))) reset_handler();
 void __attribute__ ((interrupt ("ABORT"))) prefetch_abort_handler();
